@@ -16,17 +16,25 @@ public class TreeHeight {
     int computeHeight() {
         int maxHeight = 0;
         Node nodes[] = new Node[n];
-        Node tmp = null;
-        int root = 0;
+        int root = -1;
         for (int i = 0; i < n; i++) {
-            nodes[i] = new Node(i);
+            nodes[i] = new Node(parent[i]);
         }
-        for (int i = 0; i < n; i++) {
-            if (parent[i] == -1) root = i;
-            if (parent[i] == root) {
+
+        for (int i = 0; i < nodes.length; i++) {
+            if(nodes[i].getData() == -1) {
+                //its root
+                root = i;
+            } else if (nodes[i].getData() == root) {
+                nodes[root].addChild(nodes[i]);
+                System.out.println("root!");
+            } else {
+                nodes[nodes[i].getData()].addChild(nodes[i]);
+                System.out.println("Not root!");
 
             }
         }
+
         return maxHeight;
     }
 }

@@ -37,7 +37,18 @@ public class Node {
     }
 
     public void addChild(Node node) {
-        Node tmp = node;
-        System.out.println(tmp.getData());
+
+        Node ptr = this;
+        Node tmp;
+        if (ptr.getLeft() == null) {
+            ptr.setLeft(node);
+        } else {
+            while (ptr.getRight() != null) {
+                tmp = ptr.getRight();
+                ptr = tmp;
+            }
+            ptr.setRight(node);
+        }
     }
+
 }
